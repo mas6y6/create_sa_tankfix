@@ -10,6 +10,9 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    maven { name = "Curios"; url = uri("https://maven.theillusivec4.top/") }
+    maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+    maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
 }
 
 base {
@@ -111,6 +114,18 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curiosversion}"
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curiosversion}:api"
+
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    runtimeOnly files("libs/create-stuff-additions1.21.1_v2.1.3.jar")
+    compileOnly files("libs/create-stuff-additions1.21.1_v2.1.3.jar")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
